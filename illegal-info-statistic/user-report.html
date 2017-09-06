@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<title>用户举报与投诉</title>
+<style>
+	input{
+		margin-top: 5px
+	}
+</style>
+</head>
+<body  onload="init()"   >
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>违法信息管理<span class="c-gray en">&gt;</span>用户举报与投诉<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container" id="student-list">
+	<!-- <form action="" class="form-inline" style="margin-top: 10px" class="search-box"> -->
+				<div>
+					<p><b>根据条件检索</b></p>
+				</div>
+				<div class="text-l">
+					
+
+					 消息时间范围：
+					<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate radius" style="width:130px;">
+					-
+					<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate radius" style="width:130px;">
+					消息类型：
+					<select class="select radius" name="msg-type" id="msg-type" style="width:80px;height: 30px">
+						<option value="">请选择</option>
+						<option value="1">文本</option>
+						<option value="2">文件</option>
+					</select>
+					敏感类型：
+					<select class="select radius" name="sensitive-type" id="msg-type" style="width:80px;height: 30px">
+						<option value="">请选择</option>
+						<option value="1">涉黑</option>
+						<option value="2">涉黄</option>
+						<option value="3">涉政</option>
+						<option value="4">诈骗</option>
+						<option value="5">广告</option>
+					</select>
+					
+					<br>
+
+					举报人手机:
+					<input id="sender-phone" type="text" style="width:150px" class="input-text radius" placeholder="">				
+					接收人手机:
+					<input id="receiver-phone" type="text" style="width:150px" class="input-text radius" placeholder="">
+					接收人群ID:
+					<input id="receiver-gID" type="text" style="width:130px" class="input-text radius" placeholder="">
+
+					<button id="search-btn" title="根据条件检索" class="btn btn-primary-outline radius" style="width:100px;margin-left: 20px"><i class="Hui-iconfont">&#xe665;</i>检索</button>
+				</div>
+
+				
+	<!-- </form> -->
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		
+		<span class="r">共有数据：<strong id="data-num">5</strong> 条</span> 
+	</div>
+	<div class="mt-20">
+	
+	<table class="table table-bordered table-border table-hover table-bg " id="log-table">
+		<thead>
+			<tr class="text-c">
+				<th width="50">序号</th>
+				<th width="100">举报人ID</th>
+				<th width="100">举报人手机</th>
+				<th width="200">消息发送时间</th>
+				<th width="100">消息类型</th>		
+				<th width="100">敏感类型</th>		
+				<th width="100">接收人群ID</th>
+				<th width="100">接收人手机</th>		
+				<th width="100">原始文件</th>
+			</tr>
+		</thead>
+		<tbody id="log-tbody" class="text-c">
+			<tr>
+				<td>1</td>
+				<td>24545</td>
+				<td>17855812345</td>
+				<td>2017-09-06 14:40</td>
+				<td>文本</td>
+				<td>广告</td>
+				<td>9879879</td>
+				<td>17855823569</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>24545</td>
+				<td>17855812345</td>
+				<td>2017-09-01 10:11</td>
+				<td>文本</td>
+				<td>广告</td>
+				<td>9879879</td>
+				<td>17855823569</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>24545</td>
+				<td>17855812345</td>
+				<td>2017-08-28 14:40</td>
+				<td>文本</td>
+				<td>诈骗</td>
+				<td>9879879</td>
+				<td>17855823569</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>24545</td>
+				<td>17855812345</td>
+				<td>2017-08-06 12:10</td>
+				<td>文件</td>
+				<td>广告</td>
+				<td>9879879</td>
+				<td>17855823569</td>
+				<td>ad.jpg</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="pagination r" id="pagination"></div>
+	<div class="nodata" id="nodata">
+		<img src="static/images/nodata.svg" alt="">
+	</div>
+</div>
+
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript"  src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="static/js/cookie.js"></script>
+
+	
+	
+</body>
+</html>
